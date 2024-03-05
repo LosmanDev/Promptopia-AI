@@ -20,7 +20,10 @@ const Feed = () => {
   const [searchText, setSearchText] = useState('');
   const [posts, setPosts] = useState([]);
 
-  const handleSearchChange = (e) => {};
+  const handleSearchChange = (e) => {
+    e.preventDefault();
+    setSearchText(e.value);
+  };
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -28,7 +31,7 @@ const Feed = () => {
       const data = await response.json();
       setPosts(data);
     };
-    console.log(posts);
+
     fetchPosts();
   }, []);
 
