@@ -35,8 +35,6 @@ const Navbar = () => {
         <p className="logo_text">Promptopia</p>
       </Link>
 
-      {alert(providers)}
-
       {/* ********** DESKTOP NAVIGATION ******** */}
       <div className="sm:flex hidden">
         {session?.user ? (
@@ -49,7 +47,7 @@ const Navbar = () => {
             </button>
             <Link href="/profile">
               <Image
-                src="/assets/images/logo.svg"
+                src={session?.user.image}
                 width={37}
                 height={37}
                 className="rounded-full"
@@ -62,7 +60,7 @@ const Navbar = () => {
             {/* This code snippet checks if providers exist, then maps over them to create a button for each provider. 
             Each button triggers a sign-in action when clicked. */}
             {providers &&
-              Object.values(providers).map((provider) => {
+              Object.values(providers).map((provider) => (
                 <button
                   type="button"
                   key={provider.name}
@@ -70,8 +68,8 @@ const Navbar = () => {
                   className="black_btn"
                 >
                   Sign In
-                </button>;
-              })}
+                </button>
+              ))}
           </>
         )}
       </div>
@@ -80,7 +78,7 @@ const Navbar = () => {
         {session?.user ? (
           <div className="flex">
             <Image
-              src="/assets/images/logo.svg"
+              src={session?.user.image}
               width={37}
               height={37}
               className="rounded-full"
@@ -93,21 +91,21 @@ const Navbar = () => {
                 <Link
                   href="/profile"
                   className="dropdown_link"
-                  onClick={() => settoggleDropdown(false)}
+                  onClick={() => setToggleDropdown(false)}
                 >
                   My Profile
                 </Link>
                 <Link
                   href="/create-prompt"
                   className="dropdown_link"
-                  onClick={() => settoggleDropdown(false)}
+                  onClick={() => setToggleDropdown(false)}
                 >
                   Create Prompt
                 </Link>
                 <button
                   type="button"
                   onClick={() => {
-                    settoggleDropdown(false);
+                    setToggleDropdown(false);
                     signOut();
                   }}
                   className="mt-5 w-full black_btn"
@@ -122,7 +120,7 @@ const Navbar = () => {
             {/* This code snippet checks if providers exist, then maps over them to create a button for each provider. 
           Each button triggers a sign-in action when clicked. */}
             {providers &&
-              Object.values(providers).map((provider) => {
+              Object.values(providers).map((provider) => (
                 <button
                   type="button"
                   key={provider.name}
@@ -130,8 +128,8 @@ const Navbar = () => {
                   className="black_btn"
                 >
                   Sign In
-                </button>;
-              })}
+                </button>
+              ))}
           </>
         )}
       </div>
